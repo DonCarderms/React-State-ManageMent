@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import Count from "./Count";
 import Counter from "./Counter";
-import IncDec from "./IncDec";
+import IncDec from "./Reducer";
 import "./styles.css";
 import { UserContext } from "./useContext";
 import UseRef from "./useRef";
