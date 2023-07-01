@@ -9,7 +9,7 @@ const reducer = (state, action) => {
       return { value: state.value - 1 };
 
     default:
-      throw new Error();
+      throw new Error("acão inválida");
   }
 };
 

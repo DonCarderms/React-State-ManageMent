@@ -6,10 +6,11 @@ import "./styles.css";
 import { UserContext } from "./useContext";
 import UseRef from "./useRef";
 import { MyContextAPi } from "./ContextApi";
-
+import { CounterCustomHook, FetchCustomHook } from "./hookCustomizado";
 export default function App() {
   const { name, idade } = useContext(UserContext);
   const { setMyContext } = useContext(MyContextAPi);
+
   return (
     <div className="App">
       <h1>React State Management</h1>
@@ -22,6 +23,11 @@ export default function App() {
       <button onClick={() => setMyContext("new value of my context")}>
         clik
       </button>
+      <br></br>
+      <br></br>
+      <br></br>
+      <CounterCustomHook />
+      <FetchCustomHook />
     </div>
   );
 }
