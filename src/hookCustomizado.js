@@ -45,11 +45,11 @@ const useFetch = (url) => {
 export const FetchCustomHook = () => {
   const API = "https://bible-api.com/";
   const { book_name, chapter, verse } = {
-    book_name: "jorhn",
+    book_name: "john",
     chapter: 8,
-    verse: 1,
+    verse: 0,
   };
-  const URL = `${API}${book_name}+${chapter}:${verse}`;
+  const URL = `${API}${book_name}+${chapter}${verse ? ":" + verse : ""}`;
   const { isLoading, data } = useFetch(URL);
   const { reference, verses } = data;
 
