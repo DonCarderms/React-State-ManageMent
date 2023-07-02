@@ -24,16 +24,16 @@ export const CounterCustomHook = () => {
 
 const useFetch = (url) => {
   const [isLoading, setIsLoading] = useState(true);
-  const [data, setData] = useState([]);
+  const [data, setData] = useState({});
   useEffect(() => {
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
-        if (data) {
+        if (data?.verses.length) {
           setData(data);
-          setTimeout(() => setIsLoading(false), 1000);
-          //   setIsLoading(false);
         }
+        //   setIsLoading(false);
+        setTimeout(() => setIsLoading(false), 1000);
       });
   }, []);
   return {
@@ -43,15 +43,29 @@ const useFetch = (url) => {
 };
 
 export const FetchCustomHook = () => {
-  const { isLoading, data } = useFetch("https://bible-api.com/John+3:17");
+  const API = "https://bible-api.com/";
+  const { book_name, chapter, verse } = {
+    book_name: "jorhn",
+    chapter: 8,
+    verse: 1,
+  };
+  const URL = `${API}${book_name}+${chapter}:${verse}`;
+  const { isLoading, data } = useFetch(URL);
+  const { reference, verses } = data;
 
   return isLoading ? (
     <p>loading...</p>
   ) : (
-    <>
-      <h1>fetch</h1>
-      <h2>{data.reference}</h2>
-      <p>{data.text}</p>
-    </>
+    <div>
+      <h1>Bible Api</h1>
+      <h2>reference: {reference}</h2>
+      {verses.map((book) => {
+        return (
+          <p>
+            {book.verse}: {book.text}
+          </p>
+        );
+      })}
+    </div>
   );
 };
